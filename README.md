@@ -28,6 +28,11 @@ If you want to cite this work in your publication:
 ```
 
 ### Installation
+0. Install Dependency
+    ```Shell
+       sudo pip install Cython
+    ``` 
+    
 1. Clone the Faster R-CNN repository
     ```Shell
     # Make sure to clone with --recursive
