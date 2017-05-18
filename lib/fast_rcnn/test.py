@@ -111,7 +111,7 @@ def _get_blobs(im, rois):
         blobs['rois'] = _get_rois_blob(rois, im_scale_factors)
     return blobs, im_scale_factors
 
-def im_detect(net, im, _t, boxes=None):
+def im_detect(net, im, _t=None, boxes=None):
     """Detect object classes in an image given object proposals.
 
     Arguments:
@@ -124,7 +124,8 @@ def im_detect(net, im, _t, boxes=None):
             background as object category 0)
         boxes (ndarray): R x (4*K) array of predicted bounding boxes
     """
-    _t['im_preproc'].tic()
+    if _t:
+        _t['im_preproc'].tic()
     blobs, im_scales = _get_blobs(im, boxes)
 
     # When mapping from image ROIs to feature map ROIs, there's some aliasing
@@ -161,14 +162,18 @@ def im_detect(net, im, _t, boxes=None):
     else:
         net.blobs['rois'].data[...] = blobs['rois']
         #forward_kwargs['rois'] = blobs['rois'].astype(np.float32, copy=False)
-    _t['im_preproc'].toc()
+    if _t:
+        _t['im_preproc'].toc()
 
-    _t['im_net'].tic()
+    if _t:
+        _t['im_net'].tic()
     blobs_out = net.forward()
-    _t['im_net'].toc()
+    if _t:
+        _t['im_net'].toc()
     #blobs_out = net.forward(**forward_kwargs)
 
-    _t['im_postproc'].tic()
+    if _t:
+        _t['im_postproc'].tic()
     if cfg.TEST.HAS_RPN:
         assert len(im_scales) == 1, "Only single-image batch implemented"
         rois = net.blobs['rois'].data.copy()
@@ -196,7 +201,8 @@ def im_detect(net, im, _t, boxes=None):
         # Map scores and predictions back to the original set of boxes
         scores = scores[inv_index, :]
         pred_boxes = pred_boxes[inv_index, :]
-    _t['im_postproc'].toc()
+    if _t:
+        _t['im_postproc'].toc()
 
     return scores, pred_boxes
 
