@@ -93,6 +93,16 @@ If you want to cite this work in your publication:
 
 ### How to run the demo
 
+1. Download PVANet detection models
+
+2. Run the demo script
+    ```Shell
+    cd $FRCN_ROOT
+    ./tools/test_pvanet.py
+    ```
+
+### How to test on the VOC dataset
+
 1. Download PASCAL VOC 2007 and 2012
 -- Follow the instructions in [py-faster-rcnn README.md](https://github.com/rbgirshick/py-faster-rcnn#beyond-the-demo-installation-for-training-and-testing-models)
 
