@@ -1,0 +1,52 @@
+
+net: "./models/dpn/avg/inception_dpn_trainval.prototxt"
+
+test_iter: 2500
+
+test_interval: 2000
+
+base_lr: 0.1
+
+lr_policy: "step"
+
+gamma: 0.3165
+
+stepsize: 300000
+
+display: 100
+
+max_iter: 4000000
+
+momentum: 0.9
+
+weight_decay: 0.00009
+
+#plateau_winsize: 50000  #lr=0.1
+#plateau_winsize: 70700  #lr=0.03165
+#plateau_winsize: 100000 #0.01
+#plateau_winsize: 100000 #lr=0.003165
+#plateau_winsize: 141000 #lr=0.001
+#plateau_winsize: 200000 #lr=0.0003165
+#plateau_winsize: 282800 #lr=0.0001
+#plateau_winsize: 300000 #lr=0.00003165
+
+# 根据实际结果修正后的窗口大小
+#plateau_winsize: 70000  #ls=0.1
+#plateau_winsize: 150000  #lr=0.03165
+#plateau_winsize: 150000 #0.01
+#plateau_winsize: 200000 #lr=0.003165
+#plateau_winsize: 282800 #lr=0.001
+#plateau_winsize: 300000 #lr=0.0003165
+#plateau_winsize: 353500 #lr=0.0001
+#plateau_winsize: 400000 #lr=0.00003165
+
+snapshot: 2000
+
+snapshot_prefix: "./models/dpn/avg/models/step/imagenet_dpn"
+
+solver_mode: GPU
+
+iter_size: 5
+
+#debug_info: true
+
