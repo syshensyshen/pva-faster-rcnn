@@ -6459,19 +6459,40 @@ layer {
     param_str: "{'feat_stride': 16, 'num_classes': 21, 'ratios': [0.333, 0.5, 0.667, 1, 1.5, 2, 3], 'scales': [2, 3, 5, 9, 16, 32]}"
   }
 }
+#layer {
+#  name: 'proposal'
+#  type: 'Python'
+#  bottom: 'rpn_cls_prob_reshape'
+#  bottom: 'rpn_bbox_pred'
+#  bottom: 'im_info'
+#  top: 'rois'
+#  top: 'scores'
+#  include { phase: TEST }
+#  python_param {
+#    module: 'rpn.proposal_layer'
+#    layer: 'ProposalLayer'
+#    param_str: "{'feat_stride': 16, 'ratios': [0.333, 0.5, 0.667, 1, 1.5, 2, 3], 'scales': [2, 3, 5, 9, 16, 32]}"
+#  }
+#}
+
 layer {
   name: 'proposal'
-  type: 'Python'
+  type: 'Proposal'
   bottom: 'rpn_cls_prob_reshape'
   bottom: 'rpn_bbox_pred'
   bottom: 'im_info'
   top: 'rois'
   top: 'scores'
   include { phase: TEST }
-  python_param {
-    module: 'rpn.proposal_layer'
-    layer: 'ProposalLayer'
-    param_str: "{'feat_stride': 16, 'ratios': [0.333, 0.5, 0.667, 1, 1.5, 2, 3], 'scales': [2, 3, 5, 9, 16, 32]}"
+   proposal_param {
+    ratio:0.333 ratio: 0.5 ratio: 0.667 ratio: 1.0 ratio: 1.5 ratio: 2.0 ratio: 3.0
+    scale:2 scale: 3 scale: 5 scale: 9 scale: 16 scale: 32
+    base_size: 16
+    feat_stride: 16
+    pre_nms_topn: 12000
+    post_nms_topn: 300
+    nms_thresh: 0.7
+    min_size: 16
   }
 }
 

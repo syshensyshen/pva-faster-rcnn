@@ -55,6 +55,8 @@ def _get_image_blob(im):
                         interpolation=cv2.INTER_LINEAR)
         im_scale_factors.append(np.array([im_scale_x, im_scale_y, im_scale_x, im_scale_y]))
         processed_ims.append(im)
+	print im.shape
+	#raw_input()
 
     # Create a blob to hold the input images
     blob = im_list_to_blob(processed_ims)

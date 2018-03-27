@@ -71,6 +71,7 @@ class ProposalLayer(caffe.Layer):
         post_nms_topN = cfg_.RPN_POST_NMS_TOP_N
         nms_thresh    = cfg_.RPN_NMS_THRESH
         min_size      = cfg_.RPN_MIN_SIZE
+        min_size = self._feat_stride
 
         # the first set of _num_anchors channels are bg probs
         # the second set are the fg probs, which we want

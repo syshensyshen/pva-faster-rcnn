@@ -10,7 +10,8 @@
 """Test a Fast R-CNN network on an image database."""
 
 import _init_paths
-from fast_rcnn.test import test_net
+#from fast_rcnn.test import test_net
+from fast_rcnn.test_fpn import test_net
 from fast_rcnn.config import cfg, cfg_from_file, cfg_from_list
 from datasets.factory import get_imdb
 import caffe
@@ -75,7 +76,7 @@ if __name__ == '__main__':
 
     while not os.path.exists(args.caffemodel) and args.wait:
         print('Waiting for {} to exist...'.format(args.caffemodel))
-        time.sleep(10)
+        time.sleep(600)
 
     caffe.set_mode_gpu()
     caffe.set_device(args.gpu_id)
