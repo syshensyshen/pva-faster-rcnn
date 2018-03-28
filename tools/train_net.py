@@ -68,7 +68,6 @@ def combined_roidb(imdb_names):
 
     roidbs = [get_roidb(s) for s in imdb_names.split('+')]
     roidb = roidbs[0]
-
     if len(roidbs) > 1:
         for r in roidbs[1:]:
             roidb.extend(r)
@@ -103,9 +102,6 @@ if __name__ == '__main__':
     caffe.set_device(args.gpu_id)
 
     imdb, roidb = combined_roidb(args.imdb_name)
-    #for item in roidb:
-    #  print item
-    #  raw_input()
     print '{:d} roidb entries'.format(len(roidb))
 
     output_dir = get_output_dir(imdb)

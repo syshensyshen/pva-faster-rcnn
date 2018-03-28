@@ -32,14 +32,7 @@ class RoIDataLayer(caffe.Layer):
             inds = np.hstack((
                 np.random.permutation(horz_inds),
                 np.random.permutation(vert_inds)))
-	    
-	    #print inds.shape
-            #print widths, heights
-            #print horz_inds
-            #print vert_inds
-            #raw_input()
             inds = np.reshape(inds, (-1, 2))
-	    #inds = inds.reshape(-1, 2)
             row_perm = np.random.permutation(np.arange(inds.shape[0]))
             inds = np.reshape(inds[row_perm, :], (-1,))
             self._perm = inds
@@ -201,4 +194,3 @@ class BlobFetcher(Process):
             minibatch_db = [self._roidb[i] for i in db_inds]
             blobs = get_minibatch(minibatch_db, self._num_classes)
             self._queue.put(blobs)
-

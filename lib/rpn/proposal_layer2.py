@@ -26,9 +26,16 @@ class ProposalLayer(caffe.Layer):
         layer_params = yaml.load(self.param_str)
 
         self._feat_stride = layer_params['feat_stride']
-        anchor_scales = layer_params.get('scales', (8, 16, 32))
-        anchor_ratios = layer_params.get('ratios', ((0.5, 1, 2)))
-        self._anchors = generate_anchors(ratios=anchor_ratios, scales=np.array(anchor_scales))
+        p = int(np.log2(self._feat_stride) + 1)
+        if p == 5:
+            anchor_scales = layer_params.get('scales', (8,16, 32))
+        if p == 4:
+            anchor_scales = layer_params.get('scales', (4,8,16))
+        if p == 3:
+            anchor_scales = layer_params.get('scales',(2,4,8))
+        if p == 2:
+            anchor_scales = layer_params.get('scales',(1,2,4))
+        self._anchors = generate_anchors(scales=np.array(anchor_scales))
         self._num_anchors = self._anchors.shape[0]
 
         if DEBUG:
@@ -62,16 +69,11 @@ class ProposalLayer(caffe.Layer):
         assert bottom[0].data.shape[0] == 1, \
             'Only single item batches are supported'
 
-        cfg_key = self.phase # either 'TRAIN' or 'TEST'
-        if cfg_key == 0:
-          cfg_ = cfg.TRAIN
-        else:
-          cfg_ = cfg.TEST
-        pre_nms_topN  = cfg_.RPN_PRE_NMS_TOP_N
-        post_nms_topN = cfg_.RPN_POST_NMS_TOP_N
-        nms_thresh    = cfg_.RPN_NMS_THRESH
-        min_size      = cfg_.RPN_MIN_SIZE
-        min_size = self._feat_stride
+        cfg_key = 'TRAIN'#str(self.phase) # either 'TRAIN' or 'TEST'
+        pre_nms_topN  = cfg[cfg_key].RPN_PRE_NMS_TOP_N
+        post_nms_topN = cfg[cfg_key].RPN_POST_NMS_TOP_N
+        nms_thresh    = cfg[cfg_key].RPN_NMS_THRESH
+        min_size      = cfg[cfg_key].RPN_MIN_SIZE
 
         # the first set of _num_anchors channels are bg probs
         # the second set are the fg probs, which we want
@@ -124,7 +126,7 @@ class ProposalLayer(caffe.Layer):
         # reshape to (1 * H * W * A, 1) where rows are ordered by (h, w, a)
         scores = scores.transpose((0, 2, 3, 1)).reshape((-1, 1))
 
-        # Convert anchors into proposals via bbox transformations
+        # Convert anchors into proposals via bbox transformations 
         proposals = bbox_transform_inv(anchors, bbox_deltas)
 
         # 2. clip predicted boxes to image
@@ -180,3 +182,4 @@ def _filter_boxes(boxes, min_size):
     hs = boxes[:, 3] - boxes[:, 1] + 1
     keep = np.where((ws >= min_size) & (hs >= min_size))[0]
     return keep
+

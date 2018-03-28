@@ -159,6 +159,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -325,6 +326,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -355,6 +357,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -441,6 +444,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -607,6 +611,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -704,6 +709,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -870,6 +876,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -967,6 +974,7 @@ layer {
     kernel_w: 1
     stride_h: 2
     stride_w: 2
+    engine: CAFFE
   }
 }
 layer {
@@ -1133,6 +1141,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -1163,6 +1172,7 @@ layer {
     kernel_w: 1
     stride_h: 2
     stride_w: 2
+    engine: CAFFE
   }
 }
 layer {
@@ -1249,6 +1259,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -1415,6 +1426,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -1512,6 +1524,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -1678,6 +1691,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -1775,6 +1789,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -1941,6 +1956,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -2031,6 +2047,7 @@ layer {
     kernel_w: 1
     stride_h: 2
     stride_w: 2
+    engine: CAFFE
   }
 }
 layer {
@@ -2098,6 +2115,7 @@ layer {
     kernel_w: 1
     stride_h: 2
     stride_w: 2
+    engine: CAFFE
   }
 }
 layer {
@@ -2232,6 +2250,7 @@ layer {
     kernel_w: 1
     stride_h: 2
     stride_w: 2
+    engine: CAFFE
   }
 }
 layer {
@@ -2445,6 +2464,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -2528,6 +2548,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -2558,6 +2579,7 @@ layer {
     kernel_w: 1
     stride_h: 2
     stride_w: 2
+    engine: CAFFE
   }
 }
 layer {
@@ -2637,6 +2659,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -2704,6 +2727,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -2838,6 +2862,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -3054,6 +3079,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -3144,6 +3170,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -3211,6 +3238,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -3345,6 +3373,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -3561,6 +3590,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -3651,6 +3681,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -3718,6 +3749,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -3852,6 +3884,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -4068,6 +4101,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -4158,6 +4192,7 @@ layer {
     kernel_w: 1
     stride_h: 2
     stride_w: 2
+    engine: CAFFE
   }
 }
 layer {
@@ -4225,6 +4260,7 @@ layer {
     kernel_w: 1
     stride_h: 2
     stride_w: 2
+    engine: CAFFE
   }
 }
 layer {
@@ -4359,6 +4395,7 @@ layer {
     kernel_w: 1
     stride_h: 2
     stride_w: 2
+    engine: CAFFE
   }
 }
 layer {
@@ -4572,6 +4609,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -4655,6 +4693,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -4685,6 +4724,7 @@ layer {
     kernel_w: 1
     stride_h: 2
     stride_w: 2
+    engine: CAFFE
   }
 }
 layer {
@@ -4764,6 +4804,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -4831,6 +4872,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -4965,6 +5007,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -5181,6 +5224,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -5271,6 +5315,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -5338,6 +5383,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -5472,6 +5518,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -5688,6 +5735,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -5778,6 +5826,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -5845,6 +5894,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -5979,6 +6029,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {
@@ -6188,6 +6239,7 @@ layer {
     kernel_w: 1
     stride_h: 1
     stride_w: 1
+    engine: CAFFE
   }
 }
 layer {

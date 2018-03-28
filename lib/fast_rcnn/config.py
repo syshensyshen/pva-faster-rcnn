@@ -43,10 +43,6 @@ __C.TRAIN.SCALE_MULTIPLE_OF = 1
 # Max pixel size of the longest side of a scaled input image
 __C.TRAIN.MAX_SIZE = 1000
 
-# OHEM
-__C.TRAIN.OHEM_USE_NMS = True
-__C.TRAIN.OHEM_NMS_THRESH = 0.7
-
 # Images to use per minibatch
 __C.TRAIN.IMS_PER_BATCH = 2
 
@@ -65,7 +61,7 @@ __C.TRAIN.BG_THRESH_HI = 0.5
 __C.TRAIN.BG_THRESH_LO = 0.1
 
 # Use horizontally-flipped images during training?
-__C.TRAIN.USE_FLIPPED = False #True
+__C.TRAIN.USE_FLIPPED = True
 
 # Train bounding-box regressors
 __C.TRAIN.BBOX_REG = True
@@ -84,7 +80,6 @@ __C.TRAIN.SNAPSHOT_INFIX = ''
 # Use a prefetch thread in roi_data_layer.layer
 # So far I haven't found this useful; likely more engineering work is required
 __C.TRAIN.USE_PREFETCH = False
-__C.TRAIN.USE_OHEM = True
 
 # Normalize the targets (subtract empirical mean, divide by empirical stddev)
 __C.TRAIN.BBOX_NORMALIZE_TARGETS = True
@@ -109,13 +104,13 @@ __C.TRAIN.HAS_RPN = False
 # IOU >= thresh: positive example
 __C.TRAIN.RPN_POSITIVE_OVERLAP = 0.7
 # IOU < thresh: negative example
-__C.TRAIN.RPN_NEGATIVE_OVERLAP = 0.3
+__C.TRAIN.RPN_NEGATIVE_OVERLAP = 0.25
 # If an anchor statisfied by positive and negative conditions set to negative
 __C.TRAIN.RPN_CLOBBER_POSITIVES = False
 # Max number of foreground examples
-__C.TRAIN.RPN_FG_FRACTION = 0.5
+__C.TRAIN.RPN_FG_FRACTION = 0.75#0.5
 # Total number of examples
-__C.TRAIN.RPN_BATCHSIZE = 256
+__C.TRAIN.RPN_BATCHSIZE = 128
 # NMS threshold used on RPN proposals
 __C.TRAIN.RPN_NMS_THRESH = 0.7
 # Number of top scoring boxes to keep before apply NMS to RPN proposals
@@ -168,9 +163,9 @@ __C.TEST.PROPOSAL_METHOD = 'selective_search'
 ## NMS threshold used on RPN proposals
 __C.TEST.RPN_NMS_THRESH = 0.7
 ## Number of top scoring boxes to keep before apply NMS to RPN proposals
-__C.TEST.RPN_PRE_NMS_TOP_N = 6000
+__C.TEST.RPN_PRE_NMS_TOP_N = 1200#6000
 ## Number of top scoring boxes to keep after applying NMS to RPN proposals
-__C.TEST.RPN_POST_NMS_TOP_N = 300
+__C.TEST.RPN_POST_NMS_TOP_N = 80#300
 # Proposal height and width both need to be greater than RPN_MIN_SIZE (at orig image scale)
 __C.TEST.RPN_MIN_SIZE = 16
 
@@ -197,7 +192,6 @@ __C.DEDUP_BOXES = 1./16.
 # We use the same pixel mean for all networks even though it's not exactly what
 # they were trained with
 __C.PIXEL_MEANS = np.array([[[102.9801, 115.9465, 122.7717]]])
-#__C.PIXEL_MEANS = np.array([[[0, 0, 0]]])
 
 # For reproducibility
 __C.RNG_SEED = 3

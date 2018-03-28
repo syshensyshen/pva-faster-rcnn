@@ -39,8 +39,6 @@ def get_minibatch(roidb, num_classes):
         gt_boxes[:, 0:4] = roidb[0]['boxes'][gt_inds, :] * im_scales[0]
         gt_boxes[:, 4] = roidb[0]['gt_classes'][gt_inds]
         blobs['gt_boxes'] = gt_boxes
-	#print im_blob.shape
-	#raw_input()
         blobs['im_info'] = np.array(
             [np.hstack((im_blob.shape[2], im_blob.shape[3], im_scales[0]))],
             dtype=np.float32)
@@ -140,7 +138,6 @@ def _get_image_blob(roidb, scale_inds):
         if roidb[i]['flipped']:
             im = im[:, ::-1, :]
         target_size = cfg.TRAIN.SCALES[scale_inds[i]]
-	#print cfg.PIXEL_MEANS, target_size, cfg.TRAIN.MAX_SIZE, cfg.TRAIN.SCALE_MULTIPLE_OF
         im, im_scale = prep_im_for_blob(im, cfg.PIXEL_MEANS, target_size,
                                         cfg.TRAIN.MAX_SIZE, cfg.TRAIN.SCALE_MULTIPLE_OF)
         im_scales.append(im_scale)
@@ -200,4 +197,3 @@ def _vis_minibatch(im_blob, rois_blob, labels_blob, overlaps):
                           edgecolor='r', linewidth=3)
             )
         plt.show()
-

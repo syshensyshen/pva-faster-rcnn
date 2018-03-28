@@ -96,7 +96,6 @@ class AnchorTargetLayer(caffe.Layer):
         shift_x, shift_y = np.meshgrid(shift_x, shift_y)
         shifts = np.vstack((shift_x.ravel(), shift_y.ravel(),
                             shift_x.ravel(), shift_y.ravel())).transpose()
-
         # add A anchors (1, A, 4) to
         # cell K shifts (K, 1, 4) to get
         # shift anchors (K, A, 4)
@@ -108,8 +107,6 @@ class AnchorTargetLayer(caffe.Layer):
         all_anchors = all_anchors.reshape((K * A, 4))
         total_anchors = int(K * A)
 
-	#print self._allowed_border
-	#raw_input()
         # only keep anchors inside the image
         inds_inside = np.where(
             (all_anchors[:, 0] >= -self._allowed_border) &
@@ -124,8 +121,6 @@ class AnchorTargetLayer(caffe.Layer):
 
         # keep only inside anchors
         anchors = all_anchors[inds_inside, :]
-	#print im_info
-	#raw_input()
         if DEBUG:
             print 'anchors.shape', anchors.shape
 
@@ -138,11 +133,8 @@ class AnchorTargetLayer(caffe.Layer):
         overlaps = bbox_overlaps(
             np.ascontiguousarray(anchors, dtype=np.float),
             np.ascontiguousarray(gt_boxes, dtype=np.float))
-
         argmax_overlaps = overlaps.argmax(axis=1)
-
         max_overlaps = overlaps[np.arange(len(inds_inside)), argmax_overlaps]
-
         gt_argmax_overlaps = overlaps.argmax(axis=0)
         gt_max_overlaps = overlaps[gt_argmax_overlaps,
                                    np.arange(overlaps.shape[1])]
@@ -182,10 +174,6 @@ class AnchorTargetLayer(caffe.Layer):
 
         bbox_targets = np.zeros((len(inds_inside), 4), dtype=np.float32)
         bbox_targets = _compute_targets(anchors, gt_boxes[argmax_overlaps, :])
-	#for bbox in bbox_targets :
-	#    print bbox
-	#print bbox_targets.shape
-	#raw_input()
 
         bbox_inside_weights = np.zeros((len(inds_inside), 4), dtype=np.float32)
         bbox_inside_weights[labels == 1, :] = np.array(cfg.TRAIN.RPN_BBOX_INSIDE_WEIGHTS)
