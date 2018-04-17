@@ -304,18 +304,18 @@ class pascal_voc(imdb):
         print('~~~~~~~~')
         print('Results:')
         for ap in aps:
-            print('{:.3f}'.format(ap))
+        print('{:.3f}'.format(ap))
         print('{:.3f}'.format(np.mean(aps)))
         print('~~~~~~~~')
         print('#################')
         print('tps is {}'.format(tps)) ### ADDED
         print('nposes is {}'.format(nposes)) ### ADDED
         print('fps is {}'.format(fps)) ### ADDED
-		recs = np.sum(tps) / float(np.sum(nposes)) ### ADDED
-        #precs = np.sum(tps) / np.maximum(np.sum(tps) + np.sum(fps), np.finfo(np.float64).eps) ### ADDED
-		print('Recall = {:.4f}'.format(recs)) ### ADDED
-        #print('Precision = {:.4f}'.format(precs)) ### ADDED
-		print('#################')
+        recs = np.sum(tps) / float(np.sum(nposes)) ### ADDED
+        precs = np.sum(tps) / np.maximum(np.sum(tps) + np.sum(fps), np.finfo(np.float64).eps) ### ADDED
+	print('Recall = {:.4f}'.format(recs)) ### ADDED
+        print('Precision = {:.4f}'.format(precs)) ### ADDED
+	print('#################')
         print('')
         print('--------------------------------------------------------------')
         print('Results computed with the **unofficial** Python eval code.')
