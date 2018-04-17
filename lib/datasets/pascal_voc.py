@@ -271,6 +271,14 @@ class pascal_voc(imdb):
             self._image_set + '.txt')
         cachedir = os.path.join(self._devkit_path, 'annotations_cache')
         aps = []
+	#########
+	# add for recall
+	#########
+        recs = [] ### ADDED
+        precs = [] ### ADDED
+        nposes = [] ### ADDED
+        tps=[] ### ADDED
+        fps=[] ### ADDED
         # The PASCAL VOC metric changed in 2010
         use_07_metric = True if int(self._year) < 2010 else False
         print 'VOC07 metric? ' + ('Yes' if use_07_metric else 'No')
@@ -280,13 +288,18 @@ class pascal_voc(imdb):
             if cls == '__background__':
                 continue
             filename = self._get_voc_results_file_template().format(cls)
-            rec, prec, ap = voc_eval(
+            recalls, prec, ap, npos, tp, fp = voc_eval(
                 filename, annopath, imagesetfile, cls, cachedir, ovthresh=0.5,
                 use_07_metric=use_07_metric)
             aps += [ap]
+
+	    tps += [tp[-1]] ### ADDED
+            fps += [fp[-1]] ### ADDED
+            nposes += [npos] ### ADDED
+
             print('AP for {} = {:.4f}'.format(cls, ap))
             with open(os.path.join(output_dir, cls + '_pr.pkl'), 'w') as f:
-                cPickle.dump({'rec': rec, 'prec': prec, 'ap': ap}, f)
+                cPickle.dump({'recalls': recalls, 'prec': prec, 'ap': ap}, f)
         print('Mean AP = {:.4f}'.format(np.mean(aps)))
         print('~~~~~~~~')
         print('Results:')
@@ -294,6 +307,15 @@ class pascal_voc(imdb):
             print('{:.3f}'.format(ap))
         print('{:.3f}'.format(np.mean(aps)))
         print('~~~~~~~~')
+        print('#################')
+        print('tps is {}'.format(tps)) ### ADDED
+        print('nposes is {}'.format(nposes)) ### ADDED
+        print('fps is {}'.format(fps)) ### ADDED
+		recs = np.sum(tps) / float(np.sum(nposes)) ### ADDED
+        #precs = np.sum(tps) / np.maximum(np.sum(tps) + np.sum(fps), np.finfo(np.float64).eps) ### ADDED
+		print('Recall = {:.4f}'.format(recs)) ### ADDED
+        #print('Precision = {:.4f}'.format(precs)) ### ADDED
+		print('#################')
         print('')
         print('--------------------------------------------------------------')
         print('Results computed with the **unofficial** Python eval code.')
